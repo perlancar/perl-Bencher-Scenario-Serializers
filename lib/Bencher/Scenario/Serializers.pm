@@ -11,38 +11,52 @@ our $scenario = {
     participants => [
         {
             tags => ['json', 'serialize'],
-            fcall_template => 'JSON::PP::encode_json(<data>)',
+            module => 'JSON::PP',
+            function => 'encode_json',
+            code_template => 'state $json = JSON::PP->new->allow_nonref; $json->encode(<data>)',
         },
         {
             tags => ['json', 'deserialize'],
-            fcall_template => 'JSON::PP::decode_json(<data>)',
+            module => 'JSON::PP',
+            function => 'decode_json',
+            code_template => 'state $json = JSON::PP->new->allow_nonref; $json->decode(<data>)',
         },
         {
             tags => ['json', 'serialize'],
-            fcall_template => 'JSON::XS::encode_json(<data>)',
-        },
-        {
-            tags => ['json', 'serialize'],
-            fcall_template => 'JSON::XS::decode_json(<data>)',
-        },
-        {
-            tags => ['json', 'serialize'],
-            fcall_template => 'JSON::MaybeXS::encode_json(<data>)',
+            module => 'JSON::XS',
+            function => 'encode_json',
+            code_template => 'state $json = JSON::XS->new->allow_nonref; $json->encode(<data>)',
         },
         {
             tags => ['json', 'deserialize'],
-            fcall_template => 'JSON::MaybeXS::decode_json(<data>)',
+            module => 'JSON::XS',
+            function => 'decode_json',
+            code_template => 'state $json = JSON::XS->new->allow_nonref; $json->decode(<data>)',
+        },
+        {
+            tags => ['json', 'serialize'],
+            module => 'JSON::MaybeXS',
+            function => 'encode_json',
+            code_template => 'state $json = JSON::MaybeXS->new(allow_nonref=>1); $json->encode(<data>)',
+        },
+        {
+            tags => ['json', 'deserialize'],
+            module => 'JSON::MaybeXS',
+            function => 'decode_json',
+            code_template => 'state $json = JSON::MaybeXS->new(allow_nonref=>1); $json->decode(<data>)',
         },
         {
             tags => ['json', 'deserialize'],
             fcall_template => 'JSON::Decode::Regexp::from_json(<data>)',
         },
         {
-            tags => ['json', 'deserialize'],
+            tags => ['json', 'deserialize', 'cant_handle_scalar'],
             fcall_template => 'JSON::Decode::Marpa::from_json(<data>)',
         },
         {
+            name => 'Pegex::JSON',
             tags => ['json', 'deserialize'],
+            module => 'Pegex::JSON',
             code_template => 'state $obj = Pegex::JSON->new; $obj->load(<data>);',
         },
     ],
@@ -50,24 +64,67 @@ our $scenario = {
     datasets => [
         {
             name => 'undef',
+            summary => 'undef',
             args => {data=>undef},
+            tags => ['serialize'],
+            include_participant_tags => ['serialize'],
+            exclude_participant_tags => ['cant_handle_scalar'],
         },
         {
             name => 'num',
             summary => 'A single number (-1.23)',
             args => {data=>-1.23},
+            tags => ['serialize'],
+            include_participant_tags => ['serialize'],
+            exclude_participant_tags => ['cant_handle_scalar'],
         },
         {
             name => 'str1k',
             summary => 'A string 1024-character long',
             args => {data=>'a' x 1024},
+            tags => ['serialize'],
+            include_participant_tags => ['serialize'],
+            exclude_participant_tags => ['cant_handle_scalar'],
         },
         {
             name => 'array_int10',
             summary => 'A 10-element array containing ints',
             args => {data=>[1..10]},
+            tags => ['serialize'],
+            include_participant_tags => ['serialize'],
         },
-        # XXX more datasets
+
+        {
+            name => 'json:null',
+            summary => 'null',
+            args => {data=>'null'},
+            tags => ['deserialize'],
+            include_participant_tags => ['deserialize'],
+            exclude_participant_tags => ['cant_handle_scalar'],
+        },
+        {
+            name => 'json:num',
+            summary => 'A single number (-1.23)',
+            args => {data=>-1.23},
+            tags => ['deserialize'],
+            include_participant_tags => ['deserialize'],
+            exclude_participant_tags => ['cant_handle_scalar'],
+        },
+        {
+            name => 'json:str1k',
+            summary => 'A string 1024-character long',
+            args => {data=>'"' . ('a' x 1024) . '"'},
+            tags => ['deserialize'],
+            include_participant_tags => ['deserialize'],
+            exclude_participant_tags => ['cant_handle_scalar'],
+        },
+        {
+            name => 'json:array_int10',
+            summary => 'A 10-element array containing ints',
+            args => {data=>'[1,2,3,4,5,6,7,8,9,10]'},
+            tags => ['deserialize'],
+            include_participant_tags => ['deserialize'],
+        },
     ],
 };
 
