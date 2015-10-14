@@ -1,5 +1,11 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.02    2015-10-14 (PERLANCAR)
+
+	- Add the rest of the serializers (yaml, storable, sereal,
+	  messagepack).
+
+
 0.01    2015-10-14 (PERLANCAR)
 
         - First release.
