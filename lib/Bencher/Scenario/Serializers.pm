@@ -160,6 +160,20 @@ our $scenario = {
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
         },
+        {
+            name => 'array_int100',
+            summary => 'A 100-element array containing ints',
+            args => {data=>[1..100]},
+            tags => ['serialize'],
+            include_participant_tags => ['serialize'],
+        },
+        {
+            name => 'array_int1000',
+            summary => 'A 1000-element array containing ints',
+            args => {data=>[1..1000]},
+            tags => ['serialize'],
+            include_participant_tags => ['serialize'],
+        },
 
         {
             name => 'json:null',
@@ -188,7 +202,21 @@ our $scenario = {
         {
             name => 'json:array_int10',
             summary => 'A 10-element array containing ints',
-            args => {data=>'[1,2,3,4,5,6,7,8,9,10]'},
+            args => {data=>'['.join(',',1..10).']'},
+            tags => ['deserialize'],
+            include_participant_tags => ['json & deserialize'],
+        },
+        {
+            name => 'json:array_int100',
+            summary => 'A 10-element array containing ints',
+            args => {data=>'['.join(',',1..100).']'},
+            tags => ['deserialize'],
+            include_participant_tags => ['json & deserialize'],
+        },
+        {
+            name => 'json:array_int1000',
+            summary => 'A 1000-element array containing ints',
+            args => {data=>'['.join(',',1..1000).']'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
         },
