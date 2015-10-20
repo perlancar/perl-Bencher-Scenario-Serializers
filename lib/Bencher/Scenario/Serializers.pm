@@ -35,6 +35,18 @@ our $scenario = {
         },
         {
             tags => ['json', 'serialize'],
+            module => 'Cpanel::JSON::XS',
+            function => 'encode_json',
+            code_template => 'state $json = Cpanel::JSON::XS->new->allow_nonref; $json->encode(<data>)',
+        },
+        {
+            tags => ['json', 'deserialize'],
+            module => 'Cpanel::JSON::XS',
+            function => 'decode_json',
+            code_template => 'state $json = Cpanel::JSON::XS->new->allow_nonref; $json->decode(<data>)',
+        },
+        {
+            tags => ['json', 'serialize'],
             module => 'JSON::MaybeXS',
             function => 'encode_json',
             code_template => 'state $json = JSON::MaybeXS->new(allow_nonref=>1); $json->encode(<data>)',
