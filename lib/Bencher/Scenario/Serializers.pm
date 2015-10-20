@@ -59,6 +59,14 @@ our $scenario = {
             module => 'Pegex::JSON',
             code_template => 'state $obj = Pegex::JSON->new; $obj->load(<data>);',
         },
+        {
+            tags => ['json', 'serialize'],
+            fcall_template => 'JSON::Create::create_json(<data>)',
+        },
+        {
+            tags => ['json', 'deserialize'],
+            fcall_template => 'JSON::Parse::parse_json(<data>)',
+        },
 
         {
             tags => ['yaml', 'serialize'],
