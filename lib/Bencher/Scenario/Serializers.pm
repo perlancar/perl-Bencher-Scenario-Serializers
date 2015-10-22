@@ -5,6 +5,7 @@ package Bencher::Scenario::Serializers;
 
 use 5.010001;
 use strict;
+use utf8;
 use warnings;
 
 our $scenario = {
@@ -159,49 +160,73 @@ our $scenario = {
         },
         {
             name => 'str1k',
-            summary => 'A string 1024-character long',
+            summary => 'A non-Unicode string 1024 bytes long',
             args => {data=>'a' x 1024},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
             exclude_participant_tags => ['cant_handle_scalar'],
         },
         {
-            name => 'array_int10',
+            name => 'str1k',
+            summary => 'A Unicode string 1024 bytes long',
+            args => {data=>'我爱你爱你一辈子' x 128},
+            tags => ['serialize', 'unicode'],
+            include_participant_tags => ['serialize'],
+            exclude_participant_tags => ['cant_handle_scalar'],
+        },
+
+        {
+            name => 'array_int_10',
             summary => 'A 10-element array containing ints',
             args => {data=>[1..10]},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
         },
         {
-            name => 'array_int100',
+            name => 'array_int_100',
             summary => 'A 100-element array containing ints',
             args => {data=>[1..100]},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
         },
         {
-            name => 'array_int1000',
+            name => 'array_int_1000',
             summary => 'A 1000-element array containing ints',
             args => {data=>[1..1000]},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
         },
         {
-            name => 'hash_int10',
+            name => 'array_str1k_10',
+            summary => 'A 10-element array containing 1024-bytes-long non-Unicode strings',
+            args => {data=>[('a' x 1024) x 10]},
+            tags => ['serialize'],
+            include_participant_tags => ['serialize'],
+        },
+        {
+            name => 'array_ustr1k_10',
+            summary => 'A 10-element array containing 1024-bytes-long Unicode strings',
+            args => {data=>[('我爱你爱你一辈子' x 128) x 10]},
+            tags => ['serialize', 'json'],
+            include_participant_tags => ['serialize'],
+        },
+
+        {
+            name => 'hash_int_10',
             summary => 'A 10-key hash {1=>0, ..., 10=>0}',
             args => {data=>{map {$_=>0} 1..10}},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
         },
         {
-            name => 'hash_int100',
+            name => 'hash_int_100',
             summary => 'A 100-key hash {1=>0, ..., 100=>0}',
             args => {data=>{map {$_=>0} 1..100}},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
         },
         {
-            name => 'hash_int1000',
+            name => 'hash_int_1000',
             summary => 'A 1000-key hash {1=>0, ..., 1000=>0}',
             args => {data=>{map {$_=>0} 1..1000}},
             tags => ['serialize'],
@@ -226,49 +251,58 @@ our $scenario = {
         },
         {
             name => 'json:str1k',
-            summary => 'A string 1024-character long',
+            summary => 'A non-Unicode (ASCII) string 1024-byte long',
             args => {data=>'"' . ('a' x 1024) . '"'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
             exclude_participant_tags => ['cant_handle_scalar'],
         },
+
         {
-            name => 'json:array_int10',
+            name => 'json:array_int_10',
             summary => 'A 10-element array containing ints',
             args => {data=>'['.join(',',1..10).']'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
         },
         {
-            name => 'json:array_int100',
+            name => 'json:array_int_100',
             summary => 'A 10-element array containing ints',
             args => {data=>'['.join(',',1..100).']'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
         },
         {
-            name => 'json:array_int1000',
+            name => 'json:array_int_1000',
             summary => 'A 1000-element array containing ints',
             args => {data=>'['.join(',',1..1000).']'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
         },
         {
-            name => 'json:hash_int10',
+            name => 'json:array_str1k_10',
+            summary => 'A 10-element array containing 1024-bytes-long non-Unicode strings',
+            args => {data=>'['.join(',',('a' x 1024) x 10).']'},
+            tags => ['deserialize'],
+            include_participant_tags => ['json & deserialize'],
+        },
+
+        {
+            name => 'json:hash_int_10',
             summary => 'A 10-key hash {"1":0, ..., "10":0}',
             args => {data=>'{'.join(',', map {qq("$_":0)} 1..10).'}'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
         },
         {
-            name => 'json:hash_int100',
+            name => 'json:hash_int_100',
             summary => 'A 100-key hash {"1":0, ..., "100":0}',
             args => {data=>'{'.join(',', map {qq("$_":0)} 1..100).'}'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
         },
         {
-            name => 'json:hash_int1000',
+            name => 'json:hash_int_1000',
             summary => 'A 1000-key hash {"1":0, ..., "1000":0}',
             args => {data=>'{'.join(',', map {qq("$_":0)} 1..1000).'}'},
             tags => ['deserialize'],
