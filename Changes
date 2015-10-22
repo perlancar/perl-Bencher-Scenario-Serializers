@@ -1,5 +1,11 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.05    2015-10-22 (PERLANCAR)
+
+	- Add datasets: ustr1k, array_str1k_10, array_ustr1k_10,
+          json:array_str1k_10.
+
+
 0.04    2015-10-21 (PERLANCAR)
 
 	- Add participant: Cpanel::JSON::XS.
