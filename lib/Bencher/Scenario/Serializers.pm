@@ -282,7 +282,7 @@ our $scenario = {
         {
             name => 'json:array_str1k_10',
             summary => 'A 10-element array containing 1024-bytes-long non-Unicode strings',
-            args => {data=>'['.join(',',('a' x 1024) x 10).']'},
+            args => {data=>'['.join(',',(('"'.('a' x 1024).'"') x 10)).']'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
         },
