@@ -9,6 +9,7 @@ use utf8;
 use warnings;
 
 our $scenario = {
+    summary => 'Benchmark Perl data serialization modules',
     participants => [
         {
             tags => ['json', 'serialize'],
@@ -312,8 +313,4 @@ our $scenario = {
 };
 
 1;
-# ABSTRACT: Benchmark Perl data serialization modules
-
-=head1 SYNOPSIS
-
- % bencher -m Serializers [other options]...
+# ABSTRACT:
