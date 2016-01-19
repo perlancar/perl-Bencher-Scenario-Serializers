@@ -1,5 +1,12 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.09    2016-01-20 (PERLANCAR)
+
+	- No functional changes.
+
+	- Fix summary of Unicode strings (bytes != chars).
+
+
 0.08    2016-01-19 (PERLANCAR)
 
         - No functional changes.
