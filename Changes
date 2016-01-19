@@ -1,5 +1,13 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.08    2016-01-19 (PERLANCAR)
+
+        - No functional changes.
+
+        - [build] Rebuild to fix bencher commands shown in Benchmark Sample
+          Results section (missing "-m Module" option).
+
+
 0.07    2016-01-19 (PERLANCAR)
 
         - No functional changes.
