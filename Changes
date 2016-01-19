@@ -1,5 +1,13 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.07    2016-01-19 (PERLANCAR)
+
+        - No functional changes.
+
+        - [build] Rebuild to split sample results into serialize & deserialize
+          to make it more readable [RT#111269].
+
+
 0.06    2016-01-05 (PERLANCAR)
 
         - [Bugfix] Fix json:array_str1k_10 dataset.
