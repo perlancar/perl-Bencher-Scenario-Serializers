@@ -161,7 +161,7 @@ our $scenario = {
         },
         {
             name => 'str1k',
-            summary => 'A non-Unicode string 1024 bytes long',
+            summary => 'A non-Unicode string 1024 characters/bytes long',
             args => {data=>'a' x 1024},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
@@ -169,7 +169,7 @@ our $scenario = {
         },
         {
             name => 'str1k',
-            summary => 'A Unicode string 1024 bytes long',
+            summary => 'A Unicode string 1024 characters (3072-bytes) long',
             args => {data=>'我爱你爱你一辈子' x 128},
             tags => ['serialize', 'unicode'],
             include_participant_tags => ['serialize'],
@@ -199,14 +199,14 @@ our $scenario = {
         },
         {
             name => 'array_str1k_10',
-            summary => 'A 10-element array containing 1024-bytes-long non-Unicode strings',
+            summary => 'A 10-element array containing 1024-characters/bytes-long non-Unicode strings',
             args => {data=>[('a' x 1024) x 10]},
             tags => ['serialize'],
             include_participant_tags => ['serialize'],
         },
         {
             name => 'array_ustr1k_10',
-            summary => 'A 10-element array containing 1024-bytes-long Unicode strings',
+            summary => 'A 10-element array containing 1024-characters-long (3072-bytes long) Unicode strings',
             args => {data=>[('我爱你爱你一辈子' x 128) x 10]},
             tags => ['serialize', 'json'],
             include_participant_tags => ['serialize'],
@@ -252,7 +252,7 @@ our $scenario = {
         },
         {
             name => 'json:str1k',
-            summary => 'A non-Unicode (ASCII) string 1024-byte long',
+            summary => 'A non-Unicode (ASCII) string 1024-characters/bytes long',
             args => {data=>'"' . ('a' x 1024) . '"'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
@@ -282,7 +282,7 @@ our $scenario = {
         },
         {
             name => 'json:array_str1k_10',
-            summary => 'A 10-element array containing 1024-bytes-long non-Unicode strings',
+            summary => 'A 10-element array containing 1024-characters/bytes-long non-Unicode strings',
             args => {data=>'['.join(',',(('"'.('a' x 1024).'"') x 10)).']'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
