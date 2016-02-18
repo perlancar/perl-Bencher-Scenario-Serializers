@@ -25,6 +25,18 @@ our $scenario = {
         },
         {
             tags => ['json', 'serialize'],
+            module => 'JSON::Tiny',
+            function => 'encode_json',
+            code_template => 'JSON::Tiny::encode_json(<data>)',
+        },
+        {
+            tags => ['json', 'deserialize'],
+            module => 'JSON::Tiny',
+            function => 'decode_json',
+            code_template => 'JSON::Tiny::decode_json(<data>)',
+        },
+        {
+            tags => ['json', 'serialize'],
             module => 'JSON::XS',
             function => 'encode_json',
             code_template => 'state $json = JSON::XS->new->allow_nonref; $json->encode(<data>)',
