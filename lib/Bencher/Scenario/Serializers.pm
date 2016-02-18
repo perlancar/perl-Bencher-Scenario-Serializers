@@ -64,6 +64,11 @@ our $scenario = {
             fcall_template => 'JSON::Decode::Regexp::from_json(<data>)',
         },
         {
+            tags => ['json', 'deserialize'],
+            fcall_template => 'PERLANCAR::JSON::Match::match_json(<data>)',
+            include_by_default => 0,
+        },
+        {
             tags => ['json', 'deserialize', 'cant_handle_scalar'],
             fcall_template => 'JSON::Decode::Marpa::from_json(<data>)',
         },
