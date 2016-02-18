@@ -1,5 +1,11 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.11    2016-02-18 (PERLANCAR)
+
+	- Add participant (not included by default):
+	  PERLANCAR::JSON::Match.
+
+
 0.10    2016-01-20 (PERLANCAR)
 
 	- No functional changes.
