@@ -1,5 +1,10 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.12    2016-03-26 (PERLANCAR)
+
+	- Add participant: JSON::Tiny.
+
+
 0.11    2016-02-18 (PERLANCAR)
 
 	- Add participant (not included by default):
