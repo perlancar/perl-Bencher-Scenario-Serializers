@@ -1,5 +1,13 @@
 Revision history for Bencher-Scenario-Serializers
 
+0.13    2016-06-30 (PERLANCAR)
+
+	- No functional changes.
+
+        - [build] Rebuild to split result tables per-dataset, to make the
+          results more readable.
+
+
 0.12    2016-03-26 (PERLANCAR)
 
 	- Add participant: JSON::Tiny.
