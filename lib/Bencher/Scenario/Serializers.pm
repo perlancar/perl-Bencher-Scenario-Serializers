@@ -98,6 +98,12 @@ our $scenario = {
             tags => ['json', 'deserialize'],
             fcall_template => 'JSON::Parse::parse_json(<data>)',
         },
+        {
+            tags => ['json', 'deserialize'],
+            module => 'MarpaX::ESLIF::ECMA404',
+            function => 'decode',
+            code_template => 'state $ecma404 = MarpaX::ESLIF::ECMA404->new; $ecma404->decode(<data>)',
+        },
 
         {
             tags => ['yaml', 'serialize'],
