@@ -164,6 +164,11 @@ our $scenario = {
         },
 
         {
+            name => 'eval()',
+            tags => ['perl', 'deserialize'],
+            code_template => 'eval(<data>)',
+        },
+        {
             name => 'Data::Undump',
             tags => ['perl', 'deserialize'],
             fcall_template => 'Data::Undump::undump(<data>)',
