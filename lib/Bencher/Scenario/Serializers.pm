@@ -131,33 +131,33 @@ our $scenario = {
         },
 
         {
-            tags => ['binary', 'serialize', 'cant_handle_scalar'],
+            tags => ['binary', 'storable', 'serialize', 'cant_handle_scalar'],
             fcall_template => 'Storable::freeze(<data>)',
         },
         {
-            tags => ['binary', 'deserialize', 'cant_handle_scalar'],
+            tags => ['binary', 'storable', 'deserialize', 'cant_handle_scalar'],
             fcall_template => 'Storable::thaw(<data>)',
         },
 
         {
-            tags => ['binary', 'serialize'],
+            tags => ['binary', 'sereal', 'serialize'],
             fcall_template => 'Sereal::encode_sereal(<data>)',
         },
         {
-            tags => ['binary', 'deserialize'],
+            tags => ['binary', 'sereal', 'deserialize'],
             fcall_template => 'Sereal::decode_sereal(<data>)',
         },
 
         {
             name => 'Data::MessagePack::pack',
-            tags => ['binary', 'serialize'],
+            tags => ['binary', 'msgpack', 'serialize'],
             module => 'Data::MessagePack',
             function => 'pack',
             code_template => 'state $obj = Data::MessagePack->new; $obj->pack(<data>)',
         },
         {
             name => 'Data::MessagePack::unpack',
-            tags => ['binary', 'deserialize'],
+            tags => ['binary', 'msgpack', 'deserialize'],
             module => 'Data::MessagePack',
             function => 'unpack',
             code_template => 'state $obj = Data::MessagePack->new; $obj->unpack(<data>)',
@@ -348,6 +348,14 @@ our $scenario = {
             args => {data=>'{'.join(',', map {qq("$_":0)} 1..1000).'}'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
+        },
+
+        {
+            name => 'sereal:hash_int_100',
+            summary => 'A 100-key hash {1=>0, ..., 100=>0}',
+            args => {data=>"=\xF3rl\3\0(*db26\0b63\0b95\0b35\0b13\0b41\0b33\0b73\0b84\0b85\0b94\0b24\0b12\0b72\0b99\0b71\0a6\0b64\0b70\0b50\0b83\0b68\0a8\0b15\0a9\0a5\0b67\0b25\0b10\0a4\0b56\0b89\0b16\0b90\0b66\0b59\0b29\0b54\0b44\0b27\0b77\0b81\0b32\0b37\0b74\0b65\0b36\0b11\0b18\0b86\0a7\0b17\0b21\0b14\0b28\0b47\0b20\0b76\0b98\0b40\0b91\0b75\0b97\0b31\0b55\0b80\0b19\0b92\0b82\0b43\0b30\0b78\0b57\0b38\0b23\0a3\0b69\0b88\0b61\0b51\0b39\0b42\0b58\0b93\0a2\0b62\0a1\0b79\0b34\0b45\0b87\0c100\0b96\0b22\0b49\0b60\0b52\0b53\0b46\0b48\0"},
+            tags => ['deserialize'],
+            include_participant_tags => ['sereal & deserialize'],
         },
 
         {
