@@ -162,6 +162,18 @@ our $scenario = {
             function => 'unpack',
             code_template => 'state $obj = Data::MessagePack->new; $obj->unpack(<data>)',
         },
+
+        {
+            name => 'Data::Undump',
+            tags => ['perl', 'deserialize'],
+            fcall_template => 'Data::Undump::undump(<data>)',
+        },
+        {
+            name => 'Data::Undump::PPI',
+            tags => ['perl', 'deserialize'],
+            fcall_template => 'Data::Undump::PPI::Undump(<data>)',
+        },
+
     ],
 
     # XXX: add more datasets (larger data, etc)
@@ -331,6 +343,14 @@ our $scenario = {
             args => {data=>'{'.join(',', map {qq("$_":0)} 1..1000).'}'},
             tags => ['deserialize'],
             include_participant_tags => ['json & deserialize'],
+        },
+
+        {
+            name => 'perl:hash_int_100',
+            summary => 'A 100-key hash {1=>0, ..., 100=>0}',
+            args => {data=>'{'.join(',', map {qq($_=>0)} 1..100).'}'},
+            tags => ['deserialize'],
+            include_participant_tags => ['perl & deserialize'],
         },
     ],
 };
