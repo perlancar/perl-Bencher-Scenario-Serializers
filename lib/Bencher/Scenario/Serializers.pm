@@ -107,6 +107,14 @@ our $scenario = {
 
         {
             tags => ['yaml', 'serialize'],
+            fcall_template => 'YAML::Dump(<data>)',
+        },
+        {
+            tags => ['yaml', 'deserialize'],
+            fcall_template => 'YAML::Load(<data>)',
+        },
+        {
+            tags => ['yaml', 'serialize'],
             fcall_template => 'YAML::Old::Dump(<data>)',
         },
         {
