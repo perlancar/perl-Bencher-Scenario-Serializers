@@ -1,3 +1,13 @@
+0.160   2021-07-31  Released-By: PERLANCAR
+
+        - Update MarpaX::ESLIF::ECMA404 participant: no longer needs new(), now
+          can do encoding.
+
+	- [build] Rebuild with and adjust to updated
+          Pod::Weaver::Plugin::Bencher::Scenario (0.251) to tweak texts in
+          generated POD section.
+
+
 0.15    2017-05-17  Released-By: PERLANCAR
 
 	- Add participant: MarpaX::ESLIF::ECMA404.
